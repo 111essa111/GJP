@@ -46,6 +46,11 @@
       margin-top: 40px;
       font-size: 1.2em;
     }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
   </style>
 </head>
 <body>
@@ -53,6 +58,8 @@
   <div class="question">Czy będzie Paulina w szkole?</div>
   <button class="yes" onclick="vote('yes')">TAK</button>
   <button class="no" onclick="vote('no')">NIE</button>
+
+  <div id="message"></div>
 
   <div id="results">
     Głosy TAK: <span id="yesCount">0</span><br />
@@ -63,15 +70,29 @@
     let yesVotes = 0;
     let noVotes = 0;
 
+    function updateResults() {
+      document.getElementById('yesCount').textContent = yesVotes;
+      document.getElementById('noCount').textContent = noVotes;
+    }
+
     function vote(choice) {
+      if (localStorage.getItem("gjp_voted")) {
+        document.getElementById("message").textContent = "Już głosowałeś!";
+        return;
+      }
+
       if (choice === 'yes') {
         yesVotes++;
-        document.getElementById('yesCount').textContent = yesVotes;
       } else {
         noVotes++;
-        document.getElementById('noCount').textContent = noVotes;
       }
+
+      localStorage.setItem("gjp_voted", "true");
+      document.getElementById("message").textContent = "Dziękujemy za głos!";
+      updateResults();
     }
+
+    updateResults(); // zaktualizuj przy załadowaniu
   </script>
 </body>
 </html>
