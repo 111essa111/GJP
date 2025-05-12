@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GJP - Głosowanie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+    .question {
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+    button {
+      font-size: 1.5em;
+      padding: 15px 30px;
+      margin: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+    .yes:hover {
+      background-color: #45a049;
+    }
+    .no:hover {
+      background-color: #da190b;
+    }
+    #results {
+      margin-top: 40px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>GJP</h1>
+  <div class="question">Czy będzie Paulina w szkole?</div>
+  <button class="yes" onclick="vote('yes')">TAK</button>
+  <button class="no" onclick="vote('no')">NIE</button>
+
+  <div id="results">
+    Głosy TAK: <span id="yesCount">0</span><br />
+    Głosy NIE: <span id="noCount">0</span>
+  </div>
+
+  <script>
+    let yesVotes = 0;
+    let noVotes = 0;
+
+    function vote(choice) {
+      if (choice === 'yes') {
+        yesVotes++;
+        document.getElementById('yesCount').textContent = yesVotes;
+      } else {
+        noVotes++;
+        document.getElementById('noCount').textContent = noVotes;
+      }
+    }
+  </script>
+</body>
+</html>
